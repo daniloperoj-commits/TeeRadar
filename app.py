@@ -230,44 +230,44 @@ hr.card-separator {
 }
 </style>
 """, unsafe_allow_html=True)
-st.markdown("<div class='search-panel'>", unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns(3)
+with st.container(border=True):
+    st.markdown("### 🔎 Criterios de búsqueda")
 
-with col1:
-    fecha = st.date_input(
-        "Fecha",
-        value=date.today(),
-        min_value=date.today(),
-        format="DD/MM/YYYY"
-    )
+    col1, col2, col3 = st.columns(3)
 
-with col2:
-    hora_inicio_txt = st.text_input(
-        "Hora inicio",
-        value="09:00",
-        help="Formato HH:MM"
-    )
+    with col1:
+        fecha = st.date_input(
+            "Fecha",
+            value=date.today(),
+            min_value=date.today(),
+            format="DD/MM/YYYY"
+        )
 
-with col3:
-    hora_fin_txt = st.text_input(
-        "Hora fin",
-        value="13:00",
-        help="Formato HH:MM"
-    )
+    with col2:
+        hora_inicio_txt = st.text_input(
+            "Hora inicio",
+            value="09:00",
+            help="Formato HH:MM"
+        )
 
-col4, col5, col6 = st.columns(3)
+    with col3:
+        hora_fin_txt = st.text_input(
+            "Hora fin",
+            value="13:00",
+            help="Formato HH:MM"
+        )
 
-with col4:
-    jugadores = st.number_input("Jugadores", min_value=1, max_value=4, value=4)
+    col4, col5, col6 = st.columns(3)
 
-with col5:
-    filtro_hoyos = st.selectbox("Hoyos", ["todos", "18", "9"])
+    with col4:
+        jugadores = st.number_input("Jugadores", min_value=1, max_value=4, value=4)
 
-with col6:
-    filtro_tipo = st.selectbox("Tipo campo", ["todos", "largo", "corto"])
+    with col5:
+        filtro_hoyos = st.selectbox("Hoyos", ["todos", "18", "9"])
 
-st.markdown("</div>", unsafe_allow_html=True)
+    with col6:
+        filtro_tipo = st.selectbox("Tipo campo", ["todos", "largo", "corto"])
 
 if st.button("Buscar"):
 
