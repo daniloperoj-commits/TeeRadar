@@ -146,8 +146,8 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
 # INTERFAZ
 # =========================
 
-st.title("🏌️ Open Tee Times")
-st.write("Busca salidas disponibles en campos de golf cercanos.")
+st.markdown("<div class='main-title'>🏌️ Open Tee Times</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Busca salidas disponibles en campos de golf cercanos.</div>", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
