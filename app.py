@@ -141,18 +141,55 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
 # INTERFAZ
 # =========================
 
-st.title("🏌️ Buscador de tee times")
+st.title("🏌️ Open Tee Times")
+st.write("Busca salidas disponibles en campos de golf cercanos.")
+
+st.markdown("""
+<style>
+.result-card {
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.result-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.result-meta {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.tarifa {
+    margin-left: 12px;
+    font-size: 16px;
+}
+.reserva {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: #1f7a4d;
+    color: white !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+</style>
+""", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    fecha = st.date_input("Fecha")
+    fecha_txt = st.text_input("Fecha", value="29/04/2026", help="Formato DD/MM/AAAA")
 
 with col2:
-    hora_inicio = st.time_input("Hora inicio")
+    hora_inicio_txt = st.text_input("Hora inicio", value="14:40", help="Formato HH:MM")
 
 with col3:
-    hora_fin = st.time_input("Hora fin")
+    hora_fin_txt = st.text_input("Hora fin", value="15:00", help="Formato HH:MM")
 
 col4, col5, col6 = st.columns(3)
 
@@ -166,24 +203,43 @@ with col6:
     filtro_tipo = st.selectbox("Tipo campo", ["todos", "largo", "corto"])
 
 if st.button("Buscar"):
+
+    try:
+        fecha_api = datetime.strptime(fecha_txt, "%d/%m/%Y").strftime("%Y/%m/%d")
+        hora_inicio_api = datetime.strptime(hora_inicio_txt, "%H:%M").strftime("%H:%M")
+        hora_fin_api = datetime.strptime(hora_fin_txt, "%H:%M").strftime("%H:%M")
+    except ValueError:
+        st.error("Revisa el formato: fecha DD/MM/AAAA y horas HH:MM.")
+        st.stop()
+
     resultados = buscar_teetimes(
-        fecha.strftime("%Y/%m/%d"),
-        hora_inicio.strftime("%H:%M"),
-        hora_fin.strftime("%H:%M"),
+        fecha_api,
+        hora_inicio_api,
+        hora_fin_api,
         jugadores,
         filtro_hoyos,
         filtro_tipo
     )
 
     if not resultados:
-        st.warning("No se encontraron resultados")
+        st.warning("No se encontraron salidas disponibles con esos criterios.")
     else:
+        st.success(f"Se encontraron {len(resultados)} salidas disponibles.")
+
         for r in resultados:
-            st.markdown(f"### {r['campo']}")
-            st.write(f"{r['hora']} · {r['recorrido']} · 🏌️ x {r['jugadores_disponibles']}")
+            tarifas_html = ""
 
             for t in r["tarifas"]:
-                st.write(f"- {t['nombre']}: {t['precio']} €")
+                tarifas_html += f"<div class='tarifa'>• {t['nombre']}: <b>{t['precio']} €</b></div>"
 
-            st.markdown(f"[Reservar]({r['url_reserva']})")
-            st.divider()
+            st.markdown(f"""
+            <div class="result-card">
+                <div class="result-title">{r['campo']}</div>
+                <div class="result-meta">
+                    ⏱️ <b>{r['hora']}</b> · {r['recorrido']} · 🏌️ x {r['jugadores_disponibles']}
+                </div>
+                <div><b>Tarifas:</b></div>
+                {tarifas_html}
+                <a class="reserva" href="{r['url_reserva']}" target="_blank">Reservar</a>
+            </div>
+            """, unsafe_allow_html=True)
