@@ -89,15 +89,17 @@ def consultar_recorrido(session, campo, recorrido, token, id_inicio, api, cultur
             for t in h.get("tarifas", [])
         ]
 
-        if tarifas:
-            resultados.append({
-                "campo": campo["nombre"],
-                "recorrido": formatear_nombre_recorrido(recorrido),
-                "hora": hora,
-                "jugadores_disponibles": jugadores_disp,
-                "tarifas": tarifas,
-                "url_reserva": campo["url_reserva"]
-            })
+if tarifas:
+    resultados.append({
+        "campo": campo["nombre"],
+        "recorrido": formatear_nombre_recorrido(recorrido),
+        "hora": hora,
+        "jugadores_disponibles": jugadores_disp,
+        "tarifas": tarifas,
+        "url_reserva": campo.get("url_reserva", "No disponible"),
+        "email_reservas": campo.get("email_reservas", "No disponible"),
+        "telefono_reserva": campo.get("telefono_reserva", "No disponible")
+    })
 
     return resultados
 
@@ -245,7 +247,7 @@ if st.button("Buscar"):
 
     if not resultados:
         st.warning("No se encontraron salidas disponibles con esos criterios.")
-    else:
+       else:
         st.success(f"Se encontraron {len(resultados)} salidas disponibles.")
 
         for i in range(0, len(resultados), 4):
@@ -260,11 +262,15 @@ if st.button("Buscar"):
                 with col:
                     st.markdown(f"""
                     <div class="result-card">
-                        <div class="result-title">{r['campo']} · {r['hora']}</div>
+                        <div class="result-title">{r['campo']}</div>
+                        <div class="result-meta">🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
                         <div class="result-recorrido">{r['recorrido']}</div>
-                        <div class="result-meta">🏌️ x {r['jugadores_disponibles']}</div>
                         <div><b>Tarifas:</b></div>
                         {tarifas_html}
-                        <a class="reserva" href="{r['url_reserva']}" target="_blank">Web Reservas</a>
                     </div>
                     """, unsafe_allow_html=True)
+
+                    with st.expander("Info Reservas"):
+                        st.write(f"**Web reservas:** {r['url_reserva']}")
+                        st.write(f"**Email:** {r.get('email_reservas', 'No disponible')}")
+                        st.write(f"**Teléfono:** {r.get('telefono_reserva', 'No disponible')}")
