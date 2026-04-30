@@ -310,17 +310,17 @@ if st.button("Buscar"):
                     tarifas_html += f"<div class='tarifa'>• {t['nombre']}: <b>{t['precio']} €</b></div>"
 
                 with col:
-                   st.markdown(f"""
-                   <div class="result-card">
+                    st.markdown(f"""
+                    <div class="result-card">
                         <div class="result-title">{r['campo']}</div>
-                        <div class="result-meta">🕒 <b>{r['hora']}</b> &nbsp;&nbsp; 🏌️ x {r['jugadores_disponibles']}</div>
+                        <div class="result-meta">🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
                         <div class="result-recorrido">{r['recorrido']}</div>
                         <hr class="card-separator">
                         <div class="tarifas-title">Tarifas</div>
                         {tarifas_html}
                     </div>
                     """, unsafe_allow_html=True)
-
+                
                     with st.expander("Info Reservas"):
                         st.write(f"**Web reservas:** {r.get('url_reserva', 'No disponible')}")
                         st.write(f"**Email:** {r.get('email_reservas', 'No disponible')}")
