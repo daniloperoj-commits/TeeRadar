@@ -247,7 +247,7 @@ if st.button("Buscar"):
 
     if not resultados:
     st.warning("No se encontraron salidas disponibles con esos criterios.")
-else:
+    else:
     st.success(f"Se encontraron {len(resultados)} salidas disponibles.")
 
     for i in range(0, len(resultados), 4):
