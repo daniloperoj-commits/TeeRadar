@@ -230,6 +230,7 @@ hr.card-separator {
 }
 </style>
 """, unsafe_allow_html=True)
+st.markdown("<div class='search-panel'>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 
@@ -266,6 +267,8 @@ with col5:
 with col6:
     filtro_tipo = st.selectbox("Tipo campo", ["todos", "largo", "corto"])
 
+st.markdown("</div>", unsafe_allow_html=True)
+
 if st.button("Buscar"):
 
     try:
@@ -292,7 +295,10 @@ if st.button("Buscar"):
     if not resultados:
         st.warning("No se encontraron salidas disponibles con esos criterios.")
     else:
-        st.success(f"Se encontraron {len(resultados)} salidas disponibles.")
+        st.markdown(
+        f"<div class='result-summary'>Se encontraron {len(resultados)} salidas disponibles.</div>",
+        unsafe_allow_html=True
+        )
 
         for i in range(0, len(resultados), 4):
             columnas = st.columns(4)
@@ -304,12 +310,13 @@ if st.button("Buscar"):
                     tarifas_html += f"<div class='tarifa'>• {t['nombre']}: <b>{t['precio']} €</b></div>"
 
                 with col:
-                    st.markdown(f"""
-                    <div class="result-card">
+                   st.markdown(f"""
+                   <div class="result-card">
                         <div class="result-title">{r['campo']}</div>
-                        <div class="result-meta">🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
+                        <div class="result-meta">🕒 <b>{r['hora']}</b> &nbsp;&nbsp; 🏌️ x {r['jugadores_disponibles']}</div>
                         <div class="result-recorrido">{r['recorrido']}</div>
-                        <div><b>Tarifas:</b></div>
+                        <hr class="card-separator">
+                        <div class="tarifas-title">Tarifas</div>
                         {tarifas_html}
                     </div>
                     """, unsafe_allow_html=True)
