@@ -335,7 +335,7 @@ st.markdown(
 
 st.markdown(
     "<div style='text-align:center;'>"
-    "<img src='powered.png' width='400'>"
+    "<img src='powered.jpg' width='300'>"
     "</div>",
     unsafe_allow_html=True
 )
