@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import requests
+import base64
 from bs4 import BeautifulSoup
 from datetime import datetime, date
 
