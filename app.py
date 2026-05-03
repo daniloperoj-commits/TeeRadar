@@ -307,6 +307,19 @@ if "hoyos_seleccionados" not in st.session_state:
 if "tipo_seleccionado" not in st.session_state:
     st.session_state.tipo_seleccionado = ["largo", "corto"]
 
+def seleccionar_jugadores(num):
+    st.session_state.jugadores = num
+
+def toggle_multi_obligatorio(clave, valor):
+    seleccion = st.session_state[clave].copy()
+
+    if valor in seleccion:
+        if len(seleccion) > 1:
+            seleccion.remove(valor)
+    else:
+        seleccion.append(valor)
+
+    st.session_state[clave] = seleccion
 
 hora_inicio_default = redondear_hora_actual()
 hora_fin_default_dt = datetime.combine(date.today(), hora_inicio_default) + timedelta(hours=1)
@@ -335,57 +348,83 @@ with st.container(border=True):
             format="HH:mm"
         )
 
-    col3, col4, col5 = st.columns([2.2, 1.4, 1.7])
+    col3, col4, col5 = st.columns([2.4, 1.5, 1.8])
 
     with col3:
         st.markdown("**Jugadores**")
-        cols_jugadores = st.columns(4)
+        btn1, btn2, btn3, btn4, espacio = st.columns([1, 1, 1, 1, 2.5])
     
-        for i, num in enumerate([1, 2, 3, 4]):
-            with cols_jugadores[i]:
-                tipo_boton = "primary" if st.session_state.jugadores == num else "secondary"
-                if st.button(f"🏌️ x {num}", type=tipo_boton, key=f"jug_{num}"):
-                    st.session_state.jugadores = num
+        for btn, num in zip([btn1, btn2, btn3, btn4], [1, 2, 3, 4]):
+            with btn:
+                st.button(
+                    f"🏌️ x {num}",
+                    type="primary" if st.session_state.jugadores == num else "secondary",
+                    key=f"jug_{num}",
+                    on_click=seleccionar_jugadores,
+                    args=(num,)
+                )
+    
+        jugadores = st.session_state.jugadores
+    
     
     with col4:
         st.markdown("**Hoyos**")
         btn18, btn9, espacio = st.columns([1, 1, 2.5])
-
+    
         with btn18:
-            if st.button(
+            st.button(
                 "18",
                 type="primary" if "18" in st.session_state.hoyos_seleccionados else "secondary",
-                key="hoyos_18"
-            ):
-                toggle_multi_obligatorio("hoyos_seleccionados", "18")
+                key="hoyos_18",
+                on_click=toggle_multi_obligatorio,
+                args=("hoyos_seleccionados", "18")
+            )
     
         with btn9:
-            if st.button(
+            st.button(
                 "9",
                 type="primary" if "9" in st.session_state.hoyos_seleccionados else "secondary",
-                key="hoyos_9"
-            ):
-                toggle_multi_obligatorio("hoyos_seleccionados", "9")
+                key="hoyos_9",
+                on_click=toggle_multi_obligatorio,
+                args=("hoyos_seleccionados", "9")
+            )
+    
+        if set(st.session_state.hoyos_seleccionados) == {"18", "9"}:
+            filtro_hoyos = "todos"
+        elif st.session_state.hoyos_seleccionados == ["18"]:
+            filtro_hoyos = "18"
+        else:
+            filtro_hoyos = "9"
+    
     
     with col5:
         st.markdown("**Tipo campo**")
         btn_largo, btn_corto, espacio = st.columns([1, 1, 2.5])
-
+    
         with btn_largo:
-            if st.button(
+            st.button(
                 "Largo",
                 type="primary" if "largo" in st.session_state.tipo_seleccionado else "secondary",
-                key="tipo_largo"
-            ):
-                toggle_multi_obligatorio("tipo_seleccionado", "largo")
+                key="tipo_largo",
+                on_click=toggle_multi_obligatorio,
+                args=("tipo_seleccionado", "largo")
+            )
     
         with btn_corto:
-            if st.button(
+            st.button(
                 "Corto",
                 type="primary" if "corto" in st.session_state.tipo_seleccionado else "secondary",
-                key="tipo_corto"
-            ):
-                toggle_multi_obligatorio("tipo_seleccionado", "corto")
+                key="tipo_corto",
+                on_click=toggle_multi_obligatorio,
+                args=("tipo_seleccionado", "corto")
+            )
+    
+        if set(st.session_state.tipo_seleccionado) == {"largo", "corto"}:
+            filtro_tipo = "todos"
+        elif st.session_state.tipo_seleccionado == ["largo"]:
+            filtro_tipo = "largo"
+        else:
+            filtro_tipo = "corto"
 
     hora_inicio_txt = hora_inicio.strftime("%H:%M")
     hora_fin_txt = hora_fin.strftime("%H:%M")
