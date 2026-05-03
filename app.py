@@ -297,9 +297,22 @@ if "hoyos_seleccionados" not in st.session_state:
 if "tipo_seleccionado" not in st.session_state:
     st.session_state.tipo_seleccionado = ["largo", "corto"]
 
-hora_inicio_default = redondear_hora_actual()
-hora_fin_default_dt = datetime.combine(date.today(), hora_inicio_default) + timedelta(hours=1)
-hora_fin_default = min(hora_fin_default_dt.time(), time(20, 0))
+def obtener_fecha_horas_default():
+    ahora = datetime.now(TZ)
+
+    if ahora.hour >= 18:
+        fecha_default = ahora.date() + timedelta(days=1)
+        hora_inicio_default = time(7, 0)
+    else:
+        fecha_default = ahora.date()
+        hora_inicio_default = redondear_hora_actual()
+
+    hora_fin_default_dt = datetime.combine(fecha_default, hora_inicio_default) + timedelta(hours=1)
+    hora_fin_default = min(hora_fin_default_dt.time(), time(20, 0))
+
+    return fecha_default, hora_inicio_default, hora_fin_default
+
+fecha_default, hora_inicio_default, hora_fin_default = obtener_fecha_horas_default()
 
 with st.container(border=True):
     st.markdown("### 🔎 Criterios de búsqueda")
@@ -309,7 +322,7 @@ with st.container(border=True):
     with col1:
         fecha = st.date_input(
             "Fecha",
-            value=date.today(),
+            value=fecha_default,
             min_value=date.today(),
             format="DD/MM/YYYY"
         )
