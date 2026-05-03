@@ -359,18 +359,15 @@ with st.container(border=True):
             selection_mode="multi",
             key="hoyos_segmented"
         )
-
-        if not hoyos_tmp:
-            hoyos_tmp = st.session_state.hoyos_seleccionados
-        else:
-            st.session_state.hoyos_seleccionados = hoyos_tmp
-
+    
         if set(hoyos_tmp) == {"18", "9"}:
             filtro_hoyos = "todos"
         elif hoyos_tmp == ["18"]:
             filtro_hoyos = "18"
-        else:
+        elif hoyos_tmp == ["9"]:
             filtro_hoyos = "9"
+        else:
+            filtro_hoyos = None
 
     with col5:
         tipo_tmp = st.segmented_control(
@@ -381,25 +378,22 @@ with st.container(border=True):
             selection_mode="multi",
             key="tipo_segmented"
         )
-
-        if not tipo_tmp:
-            tipo_tmp = st.session_state.tipo_seleccionado
-        else:
-            st.session_state.tipo_seleccionado = tipo_tmp
-
+    
         if set(tipo_tmp) == {"largo", "corto"}:
             filtro_tipo = "todos"
         elif tipo_tmp == ["largo"]:
             filtro_tipo = "largo"
-        else:
+        elif tipo_tmp == ["corto"]:
             filtro_tipo = "corto"
+        else:
+            filtro_tipo = None
 
     hora_inicio_txt = hora_inicio.strftime("%H:%M")
     hora_fin_txt = hora_fin.strftime("%H:%M")
 
 if st.button("Buscar"):
 
-    if jugadores_tmp is None or not hoyos_tmp or not tipo_tmp:
+    if jugadores is None or filtro_hoyos is None or filtro_tipo is None:
         st.error("Falta algún campo de búsqueda por seleccionar")
         st.stop()
     try:
