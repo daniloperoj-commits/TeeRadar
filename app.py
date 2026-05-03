@@ -254,15 +254,23 @@ div.stButton > button[kind="secondary"] {
     color: #1f2933 !important;
 }
 
-/* Slider: barra seleccionada */
-.stSlider [data-baseweb="slider"] div {
+/* Slider - zona seleccionada */
+.stSlider [data-baseweb="slider"] > div > div:nth-child(2) {
     background-color: #9aa3ad !important;
 }
 
-/* Slider: círculos */
+/* Slider - puntos/handles */
 .stSlider [role="slider"] {
     background-color: #9aa3ad !important;
     border-color: #9aa3ad !important;
+    box-shadow: none !important;
+}
+
+/* Slider - etiquetas de hora */
+.stSlider [data-testid="stThumbValue"] {
+    color: #1f2933 !important;
+    background-color: transparent !important;
+    font-weight: 600 !important;
 }
 </style>
 """, unsafe_allow_html=True)
