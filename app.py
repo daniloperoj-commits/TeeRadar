@@ -317,7 +317,6 @@ hora_inicio_default = redondear_hora_actual()
 hora_fin_default_dt = datetime.combine(date.today(), hora_inicio_default) + timedelta(hours=1)
 hora_fin_default = min(hora_fin_default_dt.time(), time(20, 0))
 
-
 with st.container(border=True):
     st.markdown("### 🔎 Criterios de búsqueda")
 
@@ -341,7 +340,7 @@ with st.container(border=True):
             format="HH:mm"
         )
 
-   col3, col4, col5, col6 = st.columns([1.4, 0.8, 0.8, 1])
+    col3, col4, col5, col6 = st.columns([1.4, 0.8, 0.8, 1])
 
     with col3:
     st.markdown("**Jugadores**")
