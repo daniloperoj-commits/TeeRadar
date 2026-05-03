@@ -289,7 +289,7 @@ def redondear_hora_actual():
     return hora_redondeada.time()
 
 if "jugadores" not in st.session_state:
-    st.session_state.jugadores = 4
+    st.session_state.jugadores = None
 
 if "hoyos_seleccionados" not in st.session_state:
     st.session_state.hoyos_seleccionados = ["18", "9"]
@@ -344,16 +344,12 @@ with st.container(border=True):
             "Jugadores",
             options=[1, 2, 3, 4],
             format_func=lambda x: f"🏌️ x {x}",
-            default=st.session_state.jugadores,
+            default=4,
             selection_mode="single",
             key="jugadores_segmented"
         )
-
-        if jugadores_tmp is None:
-            jugadores = st.session_state.jugadores
-        else:
-            st.session_state.jugadores = jugadores_tmp
-            jugadores = jugadores_tmp
+        
+        jugadores = jugadores_tmp
 
     with col4:
         hoyos_tmp = st.segmented_control(
@@ -403,7 +399,7 @@ with st.container(border=True):
 
 if st.button("Buscar"):
 
-    if jugadores is None or not hoyos_tmp or not tipo_tmp:
+    if jugadores_tmp is None or not hoyos_tmp or not tipo_tmp:
         st.error("Falta algún campo de búsqueda por seleccionar")
         st.stop()
     try:
