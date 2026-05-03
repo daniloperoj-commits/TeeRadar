@@ -340,7 +340,7 @@ with st.container(border=True):
             format="HH:mm"
         )
 
-    col3, col4, col5 = st.columns([1.6, 1, 1])
+    col3, col4, col5 = st.columns([2.2, 1.4, 1.7])
 
     with col3:
         st.markdown("**Jugadores**")
