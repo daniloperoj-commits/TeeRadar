@@ -404,8 +404,8 @@ with st.container(border=True):
 if st.button("Buscar"):
 
     if jugadores is None or not hoyos_tmp or not tipo_tmp:
-    st.error("Falta algún campo de búsqueda por seleccionar")
-    st.stop()
+        st.error("Falta algún campo de búsqueda por seleccionar")
+        st.stop()
     try:
         fecha_api = fecha.strftime("%Y/%m/%d")
         hora_inicio_api = datetime.strptime(hora_inicio_txt, "%H:%M").strftime("%H:%M")
