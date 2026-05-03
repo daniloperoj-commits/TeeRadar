@@ -241,20 +241,6 @@ TZ = ZoneInfo("Europe/Madrid")
 st.markdown("""
 <style>
 
-/* Botones seleccionados */
-div.stButton > button[kind="primary"] {
-    background-color: #d0d4da !important;
-    border-color: #9aa3ad !important;
-    color: #1f2933 !important;
-}
-
-/* Botones no seleccionados */
-div.stButton > button[kind="secondary"] {
-    background-color: #f7f8fa !important;
-    border-color: #cfd4da !important;
-    color: #1f2933 !important;
-}
-
 /* Slider - zona seleccionada */
 .stSlider [data-baseweb="slider"] > div > div:nth-child(2) {
     background-color: #9aa3ad !important;
@@ -281,12 +267,6 @@ div[data-testid="column"] {
     padding-right: 0.10rem !important;
 }
 
-/* Botones más compactos */
-div.stButton > button {
-    padding: 0.45rem 0.5rem !important;
-    min-width: auto !important;
-    white-space: nowrap !important;
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -317,20 +297,6 @@ if "hoyos_seleccionados" not in st.session_state:
 if "tipo_seleccionado" not in st.session_state:
     st.session_state.tipo_seleccionado = ["largo", "corto"]
 
-def seleccionar_jugadores(num):
-    st.session_state.jugadores = num
-
-def toggle_multi_obligatorio(clave, valor):
-    seleccion = st.session_state[clave].copy()
-
-    if valor in seleccion:
-        if len(seleccion) > 1:
-            seleccion.remove(valor)
-    else:
-        seleccion.append(valor)
-
-    st.session_state[clave] = seleccion
-
 hora_inicio_default = redondear_hora_actual()
 hora_fin_default_dt = datetime.combine(date.today(), hora_inicio_default) + timedelta(hours=1)
 hora_fin_default = min(hora_fin_default_dt.time(), time(20, 0))
@@ -358,78 +324,63 @@ with st.container(border=True):
             format="HH:mm"
         )
 
-    col3, col4, col5 = st.columns([2.4, 1.5, 1.8])
+    col3, col4, col5 = st.columns([1.4, 1, 1])
 
     with col3:
-        st.markdown("**Jugadores**")
-        btn1, btn2, btn3, btn4 = st.columns(4)
+        jugadores_tmp = st.segmented_control(
+            "Jugadores",
+            options=[1, 2, 3, 4],
+            format_func=lambda x: f"🏌️ x {x}",
+            default=st.session_state.jugadores,
+            selection_mode="single",
+            key="jugadores_segmented"
+        )
 
-        for btn, num in zip([btn1, btn2, btn3, btn4], [1, 2, 3, 4]):
-            with btn:
-                st.button(
-                    f"🏌️ x {num}",
-                    type="primary" if st.session_state.jugadores == num else "secondary",
-                    key=f"jug_{num}",
-                    on_click=seleccionar_jugadores,
-                    args=(num,)
-                )
-
-        jugadores = st.session_state.jugadores
+        if jugadores_tmp is None:
+            jugadores = st.session_state.jugadores
+        else:
+            st.session_state.jugadores = jugadores_tmp
+            jugadores = jugadores_tmp
 
     with col4:
-        st.markdown("**Hoyos**")
-        btn18, btn9 = st.columns(2)
+        hoyos_tmp = st.segmented_control(
+            "Hoyos",
+            options=["18", "9"],
+            default=st.session_state.hoyos_seleccionados,
+            selection_mode="multi",
+            key="hoyos_segmented"
+        )
 
-        with btn18:
-            st.button(
-                "18",
-                type="primary" if "18" in st.session_state.hoyos_seleccionados else "secondary",
-                key="hoyos_18",
-                on_click=toggle_multi_obligatorio,
-                args=("hoyos_seleccionados", "18")
-            )
+        if not hoyos_tmp:
+            hoyos_tmp = st.session_state.hoyos_seleccionados
+        else:
+            st.session_state.hoyos_seleccionados = hoyos_tmp
 
-        with btn9:
-            st.button(
-                "9",
-                type="primary" if "9" in st.session_state.hoyos_seleccionados else "secondary",
-                key="hoyos_9",
-                on_click=toggle_multi_obligatorio,
-                args=("hoyos_seleccionados", "9")
-            )
-
-        if set(st.session_state.hoyos_seleccionados) == {"18", "9"}:
+        if set(hoyos_tmp) == {"18", "9"}:
             filtro_hoyos = "todos"
-        elif st.session_state.hoyos_seleccionados == ["18"]:
+        elif hoyos_tmp == ["18"]:
             filtro_hoyos = "18"
         else:
             filtro_hoyos = "9"
 
     with col5:
-        st.markdown("**Tipo campo**")
-        btn_largo, btn_corto = st.columns(2)
+        tipo_tmp = st.segmented_control(
+            "Tipo campo",
+            options=["largo", "corto"],
+            format_func=lambda x: x.capitalize(),
+            default=st.session_state.tipo_seleccionado,
+            selection_mode="multi",
+            key="tipo_segmented"
+        )
 
-        with btn_largo:
-            st.button(
-                "Largo",
-                type="primary" if "largo" in st.session_state.tipo_seleccionado else "secondary",
-                key="tipo_largo",
-                on_click=toggle_multi_obligatorio,
-                args=("tipo_seleccionado", "largo")
-            )
+        if not tipo_tmp:
+            tipo_tmp = st.session_state.tipo_seleccionado
+        else:
+            st.session_state.tipo_seleccionado = tipo_tmp
 
-        with btn_corto:
-            st.button(
-                "Corto",
-                type="primary" if "corto" in st.session_state.tipo_seleccionado else "secondary",
-                key="tipo_corto",
-                on_click=toggle_multi_obligatorio,
-                args=("tipo_seleccionado", "corto")
-            )
-
-        if set(st.session_state.tipo_seleccionado) == {"largo", "corto"}:
+        if set(tipo_tmp) == {"largo", "corto"}:
             filtro_tipo = "todos"
-        elif st.session_state.tipo_seleccionado == ["largo"]:
+        elif tipo_tmp == ["largo"]:
             filtro_tipo = "largo"
         else:
             filtro_tipo = "corto"
