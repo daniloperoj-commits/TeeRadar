@@ -2,7 +2,10 @@
   {
     "nombre": "El Encín Golf",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
-   
+    "activo": True,
+    "metodo": "teeone_v1",
+    "lat":"40.522604159896275",
+    "lon":"-3.3121241486697000",
     "id_vendedor": 727,
     "id_vendedor_proveedor": 727,
     "telefono_reserva": "91 830 70 69",
@@ -26,6 +29,10 @@
   {
     "nombre": "El Robledal Golf",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "activo": True,
+    "metodo": "teeone_v1",
+    "lat":"40.44528114841747",
+    "lon":"-3.2703363137355725",
     "id_vendedor": 244,
     "id_vendedor_proveedor": 244,
     "telefono_reserva": "918 859 659",
@@ -42,6 +49,10 @@
   {
     "nombre": "Montealvar Golf",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "activo": True,
+    "metodo": "teeone_v1",
+    "lat":"40.58564588067582",
+    "lon":"-3.1168843775013633",
     "id_vendedor": 67,
     "id_vendedor_proveedor": 67,
     "telefono_reserva": "949 100 233",
@@ -63,6 +74,10 @@
   {
     "nombre": "Club de Golf Retamares",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "activo": True,
+    "metodo": "teeone_v1",
+    "lat":"40.612376040747456",
+    "lon":"-3.4691705600813627",
     "id_vendedor": 151,
     "id_vendedor_proveedor": 151,
     "telefono_reserva": "916 202 540",
@@ -84,6 +99,10 @@
   {
     "nombre": "Olivar de la Hinojosa",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "activo": True,
+    "metodo": "teeone_v1",
+    "lat":"40.46872372682449",
+    "lon":"-3.609433604496013",
     "id_vendedor": 662,
     "id_vendedor_proveedor": 662,
     "telefono_reserva": "91 721 1989/ 91 721 1889",
@@ -110,6 +129,10 @@
   {
     "nombre": "Golf Negralejo",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "activo": True,
+    "metodo": "teeone_v1",
+    "lat":"40.40928629300759",
+    "lon":"-3.5151451362758785",
     "id_vendedor": 53,
     "id_vendedor_proveedor": 53,
     "telefono_reserva": "916 69 04 22",
