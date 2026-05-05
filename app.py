@@ -20,6 +20,9 @@ st.image("header.jpg", use_container_width=True)
 params = st.query_params
 modo_debug = params.get("debug") == "1"
 
+st.write("DEBUG:", modo_debug)
+st.write("PARAMS:", dict(st.query_params))
+
 # =========================
 # FUNCIONES
 # =========================
