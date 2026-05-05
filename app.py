@@ -473,9 +473,14 @@ if st.button("Buscar"):
                     tarifas_html += f"<div class='tarifa'>• {t['nombre']}: <b>{t['precio']} €</b></div>"
 
                 with col:
+                    
+                    titulo_campo = r['campo']
+                    if modo_debug:
+                        titulo_campo = "🧪 " + titulo_campo
+
                     st.markdown(f"""
                     <div class="result-card">
-                        <div class="result-title">{r['campo']}</div>
+                        <div class="result-title">{titulo_campo}</div>
                         <div class="result-meta">🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
                         <div class="result-recorrido">{r['recorrido']}</div>
                         <hr class="card-separator">
