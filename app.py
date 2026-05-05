@@ -128,10 +128,10 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
         campos = json.load(f)
         
     if campos_seleccionados:
-    campos = [
-        campo for campo in campos
-        if campo["nombre"] in campos_seleccionados
-    ]
+        campos = [
+            campo for campo in campos
+            if campo["nombre"] in campos_seleccionados
+        ]
 
     resultados = []
 
