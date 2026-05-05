@@ -223,87 +223,57 @@ def consultar_recorrido_teeone_v2(session, campo, recorrido, fecha, hora_inicio,
     if not endpoint:
         return []
 
-    fecha_dash = fecha.replace("/", "-")
-    id_hoyo = recorrido.get("id_hoyo") or recorrido.get("id_hoyos")
-
-    # En teeone_v2 usamos el endpoint específico indicado en el JSON.
-    # Incluyo las claves en minúscula y PascalCase porque este proveedor todavía
-    # está en pruebas y así damos margen a pequeñas diferencias de contrato.
     payload = {
-        "fecha": fecha_dash,
-        "Fecha": fecha_dash,
+        "fecha": fecha,
         "horaInicio": hora_inicio,
-        "HoraInicio": hora_inicio,
         "horaFin": hora_fin,
-        "HoraFin": hora_fin,
-        "jugadores": jugadores,
-        "Jugadores": jugadores,
-        "idClub": campo.get("id_club"),
-        "IdClub": campo.get("id_club"),
-        "idAgente": campo.get("id_agente"),
-        "IdAgente": campo.get("id_agente"),
-        "idRecorrido": recorrido.get("id_recorrido"),
-        "IdRecorrido": recorrido.get("id_recorrido"),
-        "idHoyo": id_hoyo,
-        "IdHoyo": id_hoyo,
+        "idClub": str(campo.get("id_club")),
+        "idAgente": str(campo.get("id_agente")),
+        "idRecorrido": str(recorrido.get("id_recorrido")),
+        "hoyos": str(recorrido.get("id_hoyos")),
+        "jugadores": "-1",
+        "pageNum": -1,
+        "pageSize": 50
     }
 
     headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Content-Type": "application/json; charset=UTF-8",
-        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json",
         "Origin": "https://centronacional.teeone.golf",
-        "Referer": campo.get("url_reserva", "")
+        "Referer": campo.get("url_reserva", ""),
+        "User-Agent": "Mozilla/5.0"
     }
 
     try:
         r = session.post(endpoint, json=payload, headers=headers, timeout=20)
-        if r.status_code >= 400:
-            return []
         data = r.json()
     except Exception:
         return []
 
-    ofertas = extraer_lista_ofertas_v2(data)
+    horas = data.get("horasDisponibles")
+    if not horas:
+        return []
+
     resultados = []
 
-    for oferta in ofertas:
-        if not isinstance(oferta, dict):
+    for h in horas:
+        hora = h.get("hora")
+        jugadores_disp = h.get("jugadoresDisponibles", 0)
+
+        if not hora or jugadores_disp < jugadores:
             continue
 
-        hora = normalizar_hora(
-            oferta.get("hora") or oferta.get("Hora") or oferta.get("horaInicio") or
-            oferta.get("HoraInicio") or oferta.get("fechaHora") or oferta.get("FechaHora")
-        )
-        if not hora:
-            continue
-        if hora < hora_inicio or hora > hora_fin:
-            continue
+        tarifas = [
+            {
+                "nombre": t.get("nombre"),
+                "precio": t.get("precio")
+            }
+            for t in h.get("tarifas", [])
+        ]
 
-        jugadores_disp = (
-            oferta.get("jugadoresDisponibles") or oferta.get("JugadoresDisponibles") or
-            oferta.get("plazasDisponibles") or oferta.get("PlazasDisponibles") or
-            oferta.get("disponibles") or oferta.get("Disponibles") or jugadores
-        )
-        try:
-            jugadores_disp = int(jugadores_disp)
-        except Exception:
-            jugadores_disp = jugadores
-
-        if jugadores_disp < jugadores:
-            continue
-
-        precio = (
-            oferta.get("precio") or oferta.get("Precio") or oferta.get("importe") or
-            oferta.get("Importe") or oferta.get("pvp") or oferta.get("PVP")
-        )
-        nombre_tarifa = oferta.get("tarifa") or oferta.get("Tarifa") or oferta.get("nombreTarifa") or "Tarifa"
-        tarifas = [{"nombre": nombre_tarifa, "precio": precio if precio is not None else "--"}]
-
-        resultados.append(
-            construir_resultado(campo, recorrido, hora, jugadores_disp, tarifas)
-        )
+        if tarifas:
+            resultados.append(
+                construir_resultado(campo, recorrido, hora, jugadores_disp, tarifas)
+            )
 
     return resultados
 
