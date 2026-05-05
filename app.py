@@ -13,6 +13,8 @@ st.set_page_config(
 
 st.image("header.jpg", use_container_width=True)
 
+st.error("MAIN v2.0 - PRUEBA DESPLIEGUE")
+
 # =========================
 # FUNCIONES
 # =========================
