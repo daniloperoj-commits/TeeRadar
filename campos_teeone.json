@@ -1,0 +1,141 @@
+[
+  {
+    "nombre": "El Encín Golf",
+    "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+   
+    "id_vendedor": 727,
+    "id_vendedor_proveedor": 727,
+    "telefono_reserva": "91 830 70 69",
+    "email_reservas": "reservas@encingolf.com",
+    "url_reserva": "https://open.teeone.golf/es/encin/disponibilidad",
+    "Recorridos": [
+    {"nombre": "TEE 1",
+    "id_recorrido": 511,
+    "18hoyos": true,
+    "9Hoyos": false ,
+    "CampoCorto": false 
+  },
+   {"nombre": "TEE10 - 9HOYOS",
+    "id_recorrido": 514,
+    "18hoyos": false ,
+    "9Hoyos": true,
+    "CampoCorto": false 
+  }
+  ]
+  },
+  {
+    "nombre": "El Robledal Golf",
+    "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "id_vendedor": 244,
+    "id_vendedor_proveedor": 244,
+    "telefono_reserva": "918 859 659",
+    "email_reservas": "golf@robledalgolf.com",
+    "url_reserva": "https://open.teeone.golf/es/robledal/disponibilidad",
+    "Recorridos": [
+    {"nombre": "TEE 1",
+    "id_recorrido": 228,
+    "18hoyos": true,
+    "9Hoyos": false,
+    "CampoCorto": false  }
+  ]
+  },
+  {
+    "nombre": "Montealvar Golf",
+    "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "id_vendedor": 67,
+    "id_vendedor_proveedor": 67,
+    "telefono_reserva": "949 100 233",
+    "email_reservas": "informacion@montealvar.com",
+    "url_reserva": "https://open.teeone.golf/es/montealvar/disponibilidad",
+    "Recorridos": [
+    {"nombre": "TEE 1 - 18 HOYOS",
+    "id_recorrido": 107,
+    "18hoyos": true,
+    "9Hoyos": false,
+    "CampoCorto": false  },
+    {"nombre": "TEE 1 - 9 HOYOS",
+    "id_recorrido": 339,
+    "18hoyos":  false,
+    "9Hoyos": true,
+    "CampoCorto": false }
+  ]
+  },
+  {
+    "nombre": "Club de Golf Retamares",
+    "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "id_vendedor": 151,
+    "id_vendedor_proveedor": 151,
+    "telefono_reserva": "916 202 540",
+    "email_reservas": "info@retamaresgolf.com",
+    "url_reserva": "https://open.teeone.golf/es/retamares/disponibilidad",
+    "Recorridos": [
+    {"nombre": "TEE 1",
+    "id_recorrido": 167,
+    "18hoyos": true,
+    "9Hoyos": false,
+    "CampoCorto": false  },
+    {"nombre": "TEE 10 - 9 HOYOS",
+    "id_recorrido": 365,
+    "18hoyos": false,
+    "9Hoyos": true,
+    "CampoCorto": false  }
+  ]
+  },
+  {
+    "nombre": "Olivar de la Hinojosa",
+    "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "id_vendedor": 662,
+    "id_vendedor_proveedor": 662,
+    "telefono_reserva": "91 721 1989/ 91 721 1889",
+    "email_reservas": "go@golfolivar.com",
+    "url_reserva": "https://open.teeone.golf/es/olivar/disponibilidad",
+    "Recorridos": [
+    {"nombre": "TEE 1 - 18 HOYOS",
+    "id_recorrido": 494,
+    "18hoyos": true,
+    "9Hoyos": false,
+    "CampoCorto": false  },
+    {"nombre": "TEE 10 - 9 HOYOS",
+    "id_recorrido": 502,
+    "18hoyos": false,
+    "9Hoyos": true,
+    "CampoCorto": false  },
+    {"nombre": "9 HOYOS CORTOS",
+    "id_recorrido": 503,
+    "18hoyos": false,
+    "9Hoyos": true,
+    "CampoCorto": true  }
+  ]
+  },
+  {
+    "nombre": "Golf Negralejo",
+    "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
+    "id_vendedor": 53,
+    "id_vendedor_proveedor": 53,
+    "telefono_reserva": "916 69 04 22",
+    "email_reservas": "oficina@golfnegralejo.com",
+    "url_reserva": "https://open.teeone.golf/es/negralejo/disponibilidad",
+    "Recorridos": [
+    {"nombre": "18 HOYOS LARGOS",
+    "id_recorrido": 80,
+    "18hoyos": true,
+    "9Hoyos": false,
+    "CampoCorto": true  },
+      {"nombre": "9 HOYOS LARGOS",
+    "id_recorrido": 330,
+    "18hoyos": false,
+    "9Hoyos": true,
+    "CampoCorto": true  },
+      {"nombre": "18 HOYOS CORTOS",
+    "id_recorrido": 331,
+    "18hoyos": true,
+    "9Hoyos": false,
+    "CampoCorto": true  },
+      {"nombre": "9 HOYOS CORTOS",
+    "id_recorrido": 332,
+    "18hoyos": false,
+    "9Hoyos": true,
+    "CampoCorto": true  }
+    ]
+  }
+]
