@@ -246,10 +246,10 @@ def consultar_recorrido_teeone_v2(session, campo, recorrido, fecha, hora_inicio,
     try:
         r = session.post(endpoint, json=payload, headers=headers, timeout=20)
         data = r.json()
-        
+    
         if modo_debug:
-        st.write("Respuesta teeone_v2:", data)
-        
+            st.write("Respuesta teeone_v2:", data)
+    
     except Exception:
         return []
 
