@@ -2,7 +2,6 @@
   {
     "nombre": "El Encín Golf",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
-   
     "id_vendedor": 727,
     "id_vendedor_proveedor": 727,
     "telefono_reserva": "91 830 70 69",
