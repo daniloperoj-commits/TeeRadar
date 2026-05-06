@@ -224,16 +224,19 @@ def consultar_recorrido_teeone_v2(session, campo, recorrido, fecha, hora_inicio,
         return []
 
     payload = {
+        "culture": "es-ES",
         "fecha": fecha,
         "horaInicio": hora_inicio,
         "horaFin": hora_fin,
-        "idClub": str(campo.get("id_club")),
-        "idAgente": str(campo.get("id_agente")),
-        "idRecorrido": str(recorrido.get("id_recorrido")),
         "hoyos": str(recorrido.get("id_hoyos")),
-        "jugadores": "-1",
-        "pageNum": -1,
-        "pageSize": 50
+        "idAgente": str(campo.get("id_agente")),
+        "idClub": str(campo.get("id_club")),
+        "idRecorrido": str(recorrido.get("id_recorrido")),
+        "jugadores": str(jugadores),
+        "pageNum": 1,
+        "pageSize": 10,
+        "precioFin": "2000",
+        "precioInicio": "1"
     }
 
     headers = {
