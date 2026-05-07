@@ -825,8 +825,8 @@ if st.button("Buscar"):
                         
                     st.markdown(f"""
                     <div class="result-card">
-                        <div class="result-title">{titulo_campo}{distancia_txt}</div>
-                        <div class="result-meta">🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
+                        <div class="result-title">{titulo_campo}</div>
+                        <div class="result-meta">{distancia_txt} · 🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
                         <div class="result-recorrido">{r['recorrido']}</div>
                         <hr class="card-separator">
                         <div class="tarifas-title">Tarifas</div>
