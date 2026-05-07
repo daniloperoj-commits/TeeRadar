@@ -404,15 +404,22 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
         for campo in campos:
             lat_campo = campo.get("lat")
             lon_campo = campo.get("lon")
-    
-            if lat_campo is None or lon_campo is None:
+            
+            try:
+                lat_campo = float(lat_campo)
+                lon_campo = float(lon_campo)
+                lat_ref_float = float(lat_ref)
+                lon_ref_float = float(lon_ref)
+            except (TypeError, ValueError):
+                if modo_debug:
+                    st.warning(f"Campo sin coordenadas válidas: {campo.get('nombre', 'sin nombre')}")
                 continue
-    
+            
             distancia = calcular_distancia_km(
-                float(lat_ref),
-                float(lon_ref),
-                float(lat_campo),
-                float(lon_campo)
+                lat_ref_float,
+                lon_ref_float,
+                lat_campo,
+                lon_campo
             )
     
             if distancia <= radio_km:
