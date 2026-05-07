@@ -821,7 +821,7 @@ if st.button("Buscar"):
                         
                     distancia_txt = ""
                     if r.get("distancia_km") is not None:
-                        distancia_txt = f" · 📍 {round(r['distancia_km'],1)} km"
+                        distancia_txt = f"📍 {round(r['distancia_km'],1)} km"
                         
                     st.markdown(f"""
                     <div class="result-card">
