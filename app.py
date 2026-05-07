@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import requests
 import base64
+import math
 from bs4 import BeautifulSoup
 from datetime import datetime, date
 
@@ -651,7 +652,8 @@ with st.container(border=True):
         min_value=0,
         max_value=200,
         value=50,
-        step=10
+        step=10,
+        key="radio_busqueda_km"
     )
 
     col1, col2 = st.columns([1, 2])
