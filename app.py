@@ -144,6 +144,8 @@ def construir_resultado(campo, recorrido, hora, jugadores_disp, tarifas):
     }
 
 def calcular_distancia_km(lat1, lon1, lat2, lon2):
+    import math
+
     R = 6371
 
     lat1 = float(lat1)
@@ -651,7 +653,7 @@ with st.container(border=True):
         "Radio de búsqueda (km)",
         min_value=0,
         max_value=200,
-        value=50,
+        value=0,
         step=10,
         key="radio_busqueda_km"
     )
