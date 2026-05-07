@@ -139,6 +139,7 @@ def construir_resultado(campo, recorrido, hora, jugadores_disp, tarifas):
         "url_reserva": campo.get("url_reserva", "No disponible"),
         "email_reservas": campo.get("email_reservas", "No disponible"),
         "telefono_reserva": campo.get("telefono_reserva", "No disponible")
+        "distancia_km": campo.get("distancia_km")
     }
 
 def calcular_distancia_km(lat1, lon1, lat2, lon2):
@@ -799,10 +800,14 @@ if st.button("Buscar"):
                     titulo_campo = r['campo']
                     if modo_debug:
                         titulo_campo = "🧪 " + titulo_campo
-
+                        
+                    distancia_txt = ""
+                    if r.get("distancia_km") is not None:
+                        distancia_txt = f" · 📍 {round(r['distancia_km'],1)} km"
+                        
                     st.markdown(f"""
                     <div class="result-card">
-                        <div class="result-title">{titulo_campo}</div>
+                        <div class="result-title">{titulo_campo}{distancia_txt}</div>
                         <div class="result-meta">🕒 <b>{r['hora']}</b> · 🏌️ x {r['jugadores_disponibles']}</div>
                         <div class="result-recorrido">{r['recorrido']}</div>
                         <hr class="card-separator">
