@@ -2,7 +2,7 @@
   {
     "nombre": "El Encín Golf",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
-    "activo": true,
+    "activo": false,
     "metodo": "teeone_v1",
     "lat": 40.522604159896275,
     "lon": -3.3121241486697000,
