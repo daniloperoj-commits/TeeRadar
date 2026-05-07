@@ -139,7 +139,7 @@ def construir_resultado(campo, recorrido, hora, jugadores_disp, tarifas):
         "tarifas": tarifas,
         "url_reserva": campo.get("url_reserva", "No disponible"),
         "email_reservas": campo.get("email_reservas", "No disponible"),
-        "telefono_reserva": campo.get("telefono_reserva", "No disponible")
+        "telefono_reserva": campo.get("telefono_reserva", "No disponible"),
         "distancia_km": campo.get("distancia_km")
     }
 
@@ -655,7 +655,7 @@ with st.container(border=True):
         max_value=200,
         value=0,
         step=10,
-        key="radio_busqueda_km"
+        key="radio_busqueda_km_v2"
     )
 
     col1, col2 = st.columns([1, 2])
