@@ -781,8 +781,8 @@ with st.container(border=True):
     radio_km = st.slider(
         "Radio de búsqueda (km)",
         min_value=0,
-        max_value=200,
-        value=0,
+        max_value=100,
+        value=20,
         step=10,
         key="radio_busqueda_km_v2"
     )
