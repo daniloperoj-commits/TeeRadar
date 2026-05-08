@@ -859,21 +859,9 @@ st.markdown("""
 /* Slider - etiquetas de valores para distancia y rango horario */
 .stSlider [data-testid="stThumbValue"] {
     color: #1f2933 !important;
-    background: transparent !important;
     background-color: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    padding: 0 !important;
     font-size: 16px !important;
     font-weight: 600 !important;
-}
-
-/* Elimina fondo gris interno de BaseWeb */
-.stSlider [data-testid="stThumbValue"] > div {
-    background: transparent !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
 }
 
 /* Reducir separación */
@@ -1149,7 +1137,7 @@ if modo_debug:
 st.markdown("------")
 
 st.markdown(
-    "<p style='text-align:center; font-size:12px; color:gray;'>v2.0_BETA_</p>",
+    "<p style='text-align:center; font-size:12px; color:gray;'>v2.0 - BETA</p>",
     unsafe_allow_html=True
 )
 
