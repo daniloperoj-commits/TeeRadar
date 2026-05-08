@@ -326,5 +326,25 @@
         "CampoCorto": false
       }
     ]
+  },
+  {
+    "nombre": "La Finca Golf",
+    "url_api": "https://eu.golfmanager.com/lafinca/consumer/availability.json",
+    "activo": true,
+    "metodo": "golfmanager_v2",
+    "lat": 40.403231502847994,
+    "lon": -3.7990990847256323,
+    "telefono_reserva": "699 893 659",
+    "email_reservas": "golf@lafinca.golf",
+    "url_reserva": "https://lafinca.golf/visitantes/",
+    "_Comentarios": "Este endpoint ya lleva el campo en la url, por lo que no necesita identificadores",
+    "Recorridos":[ 
+      {
+        "nombre": "TEE 1 - 18 HOYOS",
+        "18hoyos": true,
+        "9Hoyos": false,
+        "CampoCorto": false
+      }
+    ]
   }
 ]
