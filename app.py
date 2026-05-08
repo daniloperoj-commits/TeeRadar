@@ -920,9 +920,9 @@ with st.container(border=True):
 
     radio_km = st.slider(
         "Radio de búsqueda (km)",
-        min_value=0,
-        max_value=200,
-        value=0,
+        min_value=10,
+        max_value=100,
+        value=10,
         step=10,
         key="radio_busqueda_km_v2"
     )
@@ -1121,7 +1121,7 @@ if modo_debug:
 st.markdown("------")
 
 st.markdown(
-    "<p style='text-align:center; font-size:12px; color:gray;'>v2.0-BETA (*)</p>",
+    "<p style='text-align:center; font-size:12px; color:gray;'>v2.0-BETA</p>",
     unsafe_allow_html=True
 )
 
