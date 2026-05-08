@@ -856,10 +856,13 @@ st.markdown("""
     box-shadow: none !important;
 }
 
-/* Slider - etiquetas de hora */
+/* Slider - etiquetas de valores para distancia y rango horario */
 .stSlider [data-testid="stThumbValue"] {
     color: #1f2933 !important;
+    background: transparent !important;
     background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
     font-size: 16px !important;
     font-weight: 600 !important;
 }
