@@ -477,8 +477,7 @@ def consultar_campo_golfmanager(campo, fecha, hora_inicio, hora_fin, jugadores, 
             continue
 
     hora = normalizar_hora(slot.get("date") or slot.get("start"))
-        
-        jugadores_disp = slot.get("slots", 0)
+    jugadores_disp = slot.get("slots", 0)
 
         if not hora:
             continue
