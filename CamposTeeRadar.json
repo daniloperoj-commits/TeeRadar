@@ -304,6 +304,25 @@
         "id_hoyos": "2",
         "18hoyos": false,
         "9Hoyos": true,
+      }
+    ]
+  },
+    {
+    "nombre": "Club de Golf Aranjuez",
+    "url_api": "https://aranjuez.golfmanager.com/ebookings/init.api",
+    "activo": true,
+    "metodo": "golfmanager",
+    "lat": 40.042056224666700,
+    "lon": -3.569175360528540,
+    "telefono_reserva": "91 891 6698",
+    "email_reservas": "golfdearanjuez@telefonica.net  ",
+    "url_reserva": "https://aranjuez.golfmanager.com/consumer/ebookings?i=1&resourcetype=1",
+    "_Comentarios": "Este endpoint ya lleva el campo en su url, por lo que no necesita identificadores",
+    "Recorridos":[ 
+      {
+        "nombre": "TEE 1 - 18 HOYOS",
+        "18hoyos": true,
+        "9Hoyos": false,
         "CampoCorto": false
       }
     ]
