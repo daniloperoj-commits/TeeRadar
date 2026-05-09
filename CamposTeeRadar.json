@@ -308,7 +308,7 @@
       }
     ]
   },
-    {
+  {
     "nombre": "Club de Golf Aranjuez",
     "url_api": "https://aranjuez.golfmanager.com/ebookings/init.api",
     "activo": true,
@@ -322,8 +322,8 @@
     "Recorridos":[ 
       {
         "nombre": "TEE 1 - 18 HOYOS",
-        "idResourceType": 1,
-        "idResource": 1,
+        "IdResourceType": 1,
+        "IdResource": 1,
         "18hoyos": true,
         "9Hoyos": false,
         "CampoCorto": false
@@ -345,16 +345,16 @@
     "Recorridos":[ 
       {
         "nombre": "TEE 1 - 18 HOYOS",
-        "idResourceType": 1,
-        "idResource": 1,
+        "ResourceType": 1,
+        "Resource": 1,
         "18hoyos": true,
         "9Hoyos": false,
         "CampoCorto": false
       },
       {
         "nombre": "TEE 10 - 9 HOYOS",
-        "idResourceType": 1,
-        "idResource": 2,
+        "ResourceType": 1,
+        "Resource": 2,
         "18hoyos": true,
         "9Hoyos": false,
         "CampoCorto": false
@@ -374,13 +374,36 @@
     "_Comentarios": "Este endpoint ya lleva el campo en la url, por lo que no necesita identificadores",
     "Recorridos": [
       {
-        "nombre": "Recorrido 9 hoyos ",   
-        "idResourceType": 1,
-        "idResource": 1,
+        "nombre": "Recorrido 9 hoyos",   
+        "IdResourceType": 1,
+        "IdResource": 1,
         "18hoyos": true,
         "9Hoyos": true,
         "CampoCorto": true
       }
     ]
-  }
+  },
+  {
+  "nombre": "Golf Santander",
+  "url_api": "https://www.golfsantander.com/azure/consumer/availability.json",
+  "activo": true,
+  "metodo": "golfmanager_v2",
+  "area": 2,
+  "lat": 40.39325769762109,
+  "lon": -3.8786980466031613,
+  "telefono_reserva": "91 257 3929/ 91 257 3930",
+  "email_reservas": "----",
+  "url_reserva": "https://www.golfsantander.com/azure/consumer/book?area=2",
+   "_Comentarios": "Las tarifas ofrecen 18 y 36 hoyos",
+  "Recorridos": [
+    {
+      "nombre": "TEE 1 - 18 /36 HOYOS",
+      "ResourceType": 1,
+      "Resource": 1,
+      "18hoyos": true,
+      "9Hoyos": false,
+      "CampoCorto": false
+    }
+  ]
+}
 ]
