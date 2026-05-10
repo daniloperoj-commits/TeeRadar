@@ -247,7 +247,7 @@
     ]
   },
   {
-    "nombre": "La Herrería",
+    "nombre": "La Herreria",
     "url_api": "https://api.teeone.golf/InternalBookingEngine/v1/Api/Disponibilidad/ObtenerDisponibilidadDia",
     "activo": true,
     "metodo": "teeone_v1",
