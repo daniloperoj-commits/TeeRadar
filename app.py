@@ -707,7 +707,7 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
     
         for campo in campos:
             if "herrer" in campo.get("nombre", "").lower():
-            st.write("DEBUG HERRERÍA - ENTRA EN FILTRO RADIO:", campo)
+                st.write("DEBUG HERRERÍA - ENTRA EN FILTRO RADIO:", campo)
             
             lat_campo = campo.get("lat")
             lon_campo = campo.get("lon")
