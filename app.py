@@ -706,6 +706,9 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
         campos_en_radio = []
     
         for campo in campos:
+            if "herrer" in campo.get("nombre", "").lower():
+            st.write("DEBUG HERRERÍA - ENTRA EN FILTRO RADIO:", campo)
+            
             lat_campo = campo.get("lat")
             lon_campo = campo.get("lon")
             
@@ -724,6 +727,13 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
                 lon_ref_float,
                 lat_campo,
                 lon_campo
+            )
+            if "herrer" in campo.get("nombre", "").lower():
+            st.write(
+                "DEBUG HERRERÍA - DISTANCIA:",
+                distancia,
+                "RADIO:",
+                radio_km
             )
     
             if distancia <= radio_km:
