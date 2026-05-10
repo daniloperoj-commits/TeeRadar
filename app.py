@@ -732,11 +732,15 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
                 st.write(
                     "DEBUG HERRERÍA - DISTANCIA:",
                     distancia,
+                    type(distancia),
                     "RADIO:",
-                    radio_km
+                    radio_km,
+                    type(radio_km),
+                    "COMPARACIÓN:",
+                    distancia <= float(radio_km)
                 )
     
-            if distancia <= radio_km:
+            if distancia <= float(radio_km):
                 campo["distancia_km"] = distancia
                 campos_en_radio.append(campo)
     
