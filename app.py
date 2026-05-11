@@ -739,11 +739,27 @@ def buscar_teetimes(fecha, hora_inicio, hora_fin, jugadores, filtro_hoyos, filtr
             campo for campo in campos
             if campo["nombre"] in campos_seleccionados
         ]
+        # =========================
+    # FILTRO PREVIO POR RECORRIDOS COMPATIBLES
+    # =========================
+
+    campos = [
+        campo for campo in campos
+        if any(
+            recorrido_cumple_filtros(
+                recorrido,
+                filtro_hoyos,
+                filtro_tipo
+            )
+            for recorrido in campo.get("Recorridos", [])
+        )
+    ]
+    
     if lat_ref is not None and lon_ref is not None and radio_km is not None:
         campos_con_coordenadas_validas = []
         campos_en_bounding_box = []
         campos_en_radio = []
-
+        
         try:
             lat_ref_float = float(lat_ref)
             lon_ref_float = float(lon_ref)
