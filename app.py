@@ -1404,7 +1404,7 @@ with st.container(border=True):
     mostrar_filtros_distancias_debug = False
 
     if modo_debug:
-        campos_debug = cargar_campos(solo_activos=True)
+        campos_debug = cargar_campos(solo_activos=False)
         nombres_campos_debug = sorted([campo["nombre"] for campo in campos_debug])
 
         st.markdown("### 🧪 Debug")
