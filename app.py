@@ -373,8 +373,8 @@ def calcular_distancias_ruta_heigit(lat_ref, lon_ref, campos, radio_km):
             st.write({
                 "indice_matrix": i,
                 "campo": campo["nombre"],
-                "distancia_matrix_m": data["distances"][0][i],
-                "distancia_matrix_km": distancia_km
+                "distancia_matrix_m": distancia_m,
+                "distancia_matrix_km": distancia_ruta_km
             })
 
         if duracion_s is not None:
