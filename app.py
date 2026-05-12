@@ -20,8 +20,6 @@ st.image("header.jpg", use_container_width=True)
 
 NOMBRE_FICHERO_CAMPOS = "CamposTeeRadar.json"
 
-HEIGIT_API_KEY = st.secrets["HEIGIT_API_KEY"]
-
 # =========================
 # MODO DEBUG
 # =========================
@@ -205,6 +203,39 @@ def campo_dentro_bounding_box(lat_ref, lon_ref, lat_campo, lon_campo, radio_km):
         and lon_ref - delta_lon <= lon_campo <= lon_ref + delta_lon
     )
 
+def probar_matrix_ors():
+    api_key = st.secrets["HEIGIT_API_KEY"]
+
+    url = "https://api.heigit.org/openrouteservice/v2/matrix/driving-car"
+
+    payload = {
+        "locations": [
+            [-3.363542, 40.481979],   # Alcalá
+            [-3.2931, 40.5053],       # El Encin
+            [-4.1545, 40.5846]        # La Herrería
+        ],
+        "sources": [0],
+        "destinations": [1, 2]
+    }
+
+    headers = {
+        "Authorization": api_key,
+        "Content-Type": "application/json"
+    }
+
+    try:
+        r = requests.post(
+            url,
+            json=payload,
+            headers=headers,
+            timeout=20
+        )
+
+        st.write("STATUS:", r.status_code)
+        st.json(r.json())
+
+    except Exception as e:
+        st.error(str(e))
 
 def consultar_recorrido_teeone_v1(session, campo, recorrido, token, id_inicio, api, culture,
                                   fecha, hora_inicio, hora_fin, jugadores):
@@ -1147,6 +1178,9 @@ with st.container(border=True):
 
         mostrar_payloads_debug = st.checkbox("Mostrar payloads enviados", value=False)
         mostrar_responses_debug = st.checkbox("Mostrar responses recibidas", value=False)
+
+        if st.button("🧪 Probar ORS Matrix"):
+            probar_matrix_ors()
 
 if st.button("Buscar"):
         
