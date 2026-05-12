@@ -369,6 +369,14 @@ def calcular_distancias_ruta_heigit(lat_ref, lon_ref, campos, radio_km):
         distancia_ruta_km = round(float(distancia_m) / 1000, 1)
         campo["distancia_ruta_km"] = distancia_ruta_km
 
+        if modo_debug:
+            st.write({
+                "indice_matrix": i,
+                "campo": campo["nombre"],
+                "distancia_matrix_m": data["distances"][0][i],
+                "distancia_matrix_km": distancia_km
+            })
+
         if duracion_s is not None:
             campo["duracion_ruta_min"] = round(float(duracion_s) / 60)
 
