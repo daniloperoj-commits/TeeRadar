@@ -20,6 +20,8 @@ st.image("header.jpg", use_container_width=True)
 
 NOMBRE_FICHERO_CAMPOS = "CamposTeeRadar.json"
 
+HEIGIT_API_KEY = st.secrets["HEIGIT_API_KEY"]
+
 # =========================
 # MODO DEBUG
 # =========================
