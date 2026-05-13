@@ -1434,9 +1434,29 @@ if st.button("Buscar"):
         l for l in localidades
         if f"{l['localidad']} ({l['provincia']})" == localidad_seleccionada
     )
-
-    lat_ref = localidad_obj["lat"]
-    lon_ref = localidad_obj["lon"]
+    
+    zona_seleccionada = None
+    
+    if "zonas" in localidad_obj:
+        nombres_zonas = [z["zona"] for z in localidad_obj["zonas"]]
+    
+        zona_seleccionada = st.selectbox(
+            "Zona / Distrito",
+            options=nombres_zonas,
+            index=0
+        )
+    
+        zona_obj = next(
+            z for z in localidad_obj["zonas"]
+            if z["zona"] == zona_seleccionada
+        )
+    
+        lat_ref = zona_obj["lat"]
+        lon_ref = zona_obj["lon"]
+    
+    else:
+        lat_ref = localidad_obj["lat"]
+        lon_ref = localidad_obj["lon"]
 
     if jugadores is None or filtro_hoyos is None or filtro_tipo is None:
         st.error("Falta algún campo de búsqueda por seleccionar")
