@@ -1476,6 +1476,13 @@ st.markdown("""
     margin-bottom: 24px;
 }
 
+.search-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f2933;
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
 .search-panel {
     border: 1px solid #e5e5e5;
     border-radius: 18px;
@@ -1667,7 +1674,11 @@ def obtener_fecha_horas_default():
 fecha_default, hora_inicio_default, hora_fin_default = obtener_fecha_horas_default()
 
 with st.container(border=True):
-    st.markdown("### Busca tu próxima salida")
+    st.markdown("""
+    <div class="search-title">
+        Busca tu próxima salida
+    </div>
+    """, unsafe_allow_html=True)
 
     localidades = cargar_localidades()
 
