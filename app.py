@@ -1667,7 +1667,7 @@ def obtener_fecha_horas_default():
 fecha_default, hora_inicio_default, hora_fin_default = obtener_fecha_horas_default()
 
 with st.container(border=True):
-    st.markdown("### 🔎 Criterios de búsqueda")
+    st.markdown("### Busca tu próxima salida")
 
     localidades = cargar_localidades()
 
